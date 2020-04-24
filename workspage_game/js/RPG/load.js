@@ -1,8 +1,9 @@
 Story = [];
 var NodeName = sessionStorage.getItem("playnode");
 console.log(NodeName);
-if(NodeName == "undefined"){
+if(NodeName == "undefined"||NodeName == "null"){
     alert("章节内容丢失了！");
+    NodeName = "01A01";
 }
 var  scrollToEnd=function(){//滚动到底部
     var h = $(document).height()-$(window).height();
