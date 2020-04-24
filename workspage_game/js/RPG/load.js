@@ -68,6 +68,7 @@ var System = function (id, text) {
     var Npc = function (id,name,text) {
      name= name.trim();
      text = text.replace(name+":","");
+     text = text.replace(name+"：","");
     var c = "";
     c += " <divclass='Item Item--left' id='"+id+"'>";
     c += '<div class="Avatar">';
