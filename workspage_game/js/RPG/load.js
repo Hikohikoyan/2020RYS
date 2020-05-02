@@ -30,7 +30,7 @@ var addButton= function(id,text,num){
         Player(text);
         $(".button").remove();
         clickBt = 1;
-        button_show(num);
+        button_show(2,num);
     });
     scrollToEnd();
 }
@@ -84,9 +84,9 @@ var System = function (id, text) {
     $("#"+id).fadeIn(3000);
     $("#"+id).focus();
 }
-var button_show = function(num){
+var button_show = function(session,num){
     //跳转剧情
-    sessionStorage.setItem("playnode","020"+num);
+    sessionStorage.setItem("playnode","0"+session+"0"+num);
     window.location.reload();
 
 }
@@ -182,9 +182,12 @@ store_data(NodeName);
 
 $(".Phone").on('click',function(){
     if(clickNode==Story.length){
-        //alert("没了！");
+        alert("本章结束");
         let a=clickNode-1;
         clickNow =Story[a].id.replace(/[^0-9]/ig,"");
+        var session=NodeName.split(0)[1].replace(/[^0-9]/ig,"");
+        session++;
+        button_show(session,1);
         return;
     }
     //console.log('点击');
