@@ -113,7 +113,7 @@ var show = function (num) {
                         break;
                     case "C":
                         let name = text.split("：")[0];
-                        alert(name);
+                        //alert(name);
                         Npc(id,name,text);
                         break;
                     case "A":
