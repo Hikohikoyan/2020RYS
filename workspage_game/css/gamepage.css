@@ -29,7 +29,6 @@ code {
     background: #111;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     height: 100%;
-    max-height: 720px;
     max-width: 420px;
     overflow: hidden scroll;
     width: 100%;

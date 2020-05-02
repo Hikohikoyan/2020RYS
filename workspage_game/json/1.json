@@ -17,11 +17,11 @@
 {"text":"<class='D' id='NormalText015'>含糊地答应了一声，社长的眼睛转向了桌上的菜。"},
 {"text":"<class='A' id='storytext016'>（也许是听错了，这声音似有几分像猫叫）"},
 {"text":"<class='A' id='storytext017'>（不不不，一定是我在胡思乱想，大家在家里宅久了，变成这样也情有可原吧）"},
-{"text":"<class='A' id='storytext018'>Yui：鸡公煲出了鱼煲嘛，怎么有股好香的烤鱼味？？"},
-{"text":"<class='A' id='storytext019'>曲奇：店名不都说了叫鸡公煲……要是卖鱼不就叫猫公煲了？"},
+{"text":"<class='C id='storytext018'>Yui：鸡公煲出了鱼煲嘛，怎么有股好香的烤鱼味？？"},
+{"text":"<class='C' id='storytext019'>曲奇：店名不都说了叫鸡公煲……要是卖鱼不就叫猫公煲了？"},
 {"text":"<class='D' id='NormalText020'>（错觉吗，社长的嘴唇貌似动了一下，但又说不出什么来）"},
-{"text":"<class='A' id='storytext021'>Yui：鸡公煲不是也卖牛蛙煲？怎么没改名叫……"},
-{"text":"<class='A' id='storytext022'>老鹅：禁止发言！再往下说会*******"},
+{"text":"<class='C id='storytext021'>Yui：鸡公煲不是也卖牛蛙煲？怎么没改名叫……"},
+{"text":"<class='C' id='storytext022'>老鹅：禁止发言！再往下说会*******"},
 {"text":"<class='D' id='NormalText023'>大家刚刚结束了长达半年的自闭期，每个人脸上都洋溢着对重逢的喜悦和对即将到来的考试的无奈。"},
 {"text":"<class='B' id='storytext024'>（如果只有社团活动而没有考试就好了）"}
 ]
