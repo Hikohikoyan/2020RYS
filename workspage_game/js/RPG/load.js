@@ -15,7 +15,7 @@ if (NodeName == "undefined" || NodeName == null) {
     alert("章节内容丢失了！");
     NodeName = "N1N1";
     console.log(NodeName);
-    sessionStorage.setItem("playnode",NodeName);
+    sessionStorage.setItem("playnode", NodeName);
     window.reload();
 }
 var scrollToEnd = function () { //滚动到底部
@@ -25,41 +25,48 @@ var scrollToEnd = function () { //滚动到底部
 
 //var clickNode = NodeName.replace(/[^0-9]/ig, ""); //从session里获取上一次的节点num
 var clickNow = ""; //当前正在的节点id
-var clickBt = 0; //是否点击了按钮
+var clickBt = 0;
+var showBt = 0; //是否出现了按钮
+var hasBt = 0;
 var clickNode = Number(NodeName.split("N")[2]); //从session里获取上一次的节点num [1]是章节号 【2】是节点号 [0]是空
 console.log(clickNode);
 const npc_image = "img/";
 
 var SwitchEnd = function () {
-    let endNode = NodeName.replace(/[^0-9]/ig, "").split("N")[1];
+    let endNode =Number( sessionStorage.getItem("playnode").split("N")[1].replace(/[^0-9]/ig, ""));
     switch (endNode) {
         case 7:
             isEnd = true;
+            writeEnds(isEnd);
             break;
         case 10:
             isEnd = true;
+            writeEnds(isEnd);
             break;
         case 11:
             isEnd = true;
+            writeEnds(isEnd);
             break;
-            case 14:
+        case 14:
             isEnd = true;
+            writeEnds(isEnd);
             break;
-            case 23:
+        case 23:
             isEnd = true;
+            writeEnds(isEnd);
             break;
-            case 24:
+        case 24:
             isEnd = true;
+            writeEnds(isEnd);
             break;
         default:
             isEnd = false;
+            writeEnds(isEnd);
             break;
     }
-    sessionStorage.setItem("isEnd", isEnd);
-    if(isEnd ==true){
-        $(".Phone").on('click', function () {
-            alert("故事结束~")
-        })
+
+    function writeEnds(isEnd) {
+        sessionStorage.setItem("isEnd", isEnd);
     }
 }
 var addButton = function (id, text, num) { //添加按钮  id是按钮id text是按钮内容 num是要跳转的序号（story中  
@@ -69,6 +76,7 @@ var addButton = function (id, text, num) { //添加按钮  id是按钮id text是
     let button = "";
     button += "<div class = 'button' id='" + id + "'>";
     button += text + "</div>";
+    console.log(id);
     if (id.indexOf('Z') >= 0) {
         //会跳到章节 要用button_show()
         jumpType = 1;
@@ -79,27 +87,30 @@ var addButton = function (id, text, num) { //添加按钮  id是按钮id text是
     $(".List").append(button);
     $("#" + id).fadeIn(600);
     button_id = id.replace(/[^1-9]/ig, "");
+    showBt = 1;
+    clickBt = 0;
     $("#" + id).on('click', function () {
         //console.log('点击');
         //show(num);
         $(".button").fadeOut(600);
-        Player(text);
+        Player(id, text);
         scrollToEnd();
         $(".button").remove();
+        showBt = 0;
         clickBt = 1;
         setTimeout(() => {
             switch (jumpType) {
                 case 1:
-                    if(isEnd == true){
+                    if (isEnd == true) {
                         break;
                     }
                     button_show(num, 1);
                     break;
-                default:
+                case 0:
                     show(num);
                     break;
             }
-        }, 800)
+        }, 1200)
     });
 
 }
@@ -113,7 +124,7 @@ var addButton = function (id, text, num) { //添加按钮  id是按钮id text是
 
 以上三句选第一个选项才会出现，选第二个跳过。*/
 
-var Player = function (id,text) {
+var Player = function (id, text) {
     //text是具体剧情文本
     let a = "";
     a += ' <div class="Item Item--right" id="Item--right">';
@@ -180,7 +191,7 @@ var show = function (num) {
     //console.log(num);
     //for (let i = 1; i < Story.length; i++) {
     if (num == Story.length) {
-        alert("没了！");
+        //alert("没了！");
         clickNow = Story[num - 1].id.replace(/[^0-9]/ig, "");
         return;
     }
@@ -203,7 +214,7 @@ var show = function (num) {
             break;
         case "A":
             text.replace("你:", "");
-            Player(id,text);
+            Player(id, text);
             break;
         case "B":
             //至于有一个特殊的要求 比如跳跃某几个剧情 那个的id 就是没有Z的 
@@ -262,49 +273,53 @@ var store_data = function (NodeName) {
 };
 
 store_data(NodeName);
-
+console.log(Story);
+var StoryEnd = false;
 $(".Phone").on('click', function () {
-    SwitchEnd();
-    if (clickNode == Story.length) {
-        alert("本章结束");
-        let a = clickNode - 1;
-        clickNow = Story[a].id.replace(/[^0-9]/ig, "");
-        var session = NodeName.split("N")[1].replace(/[^0-9]/ig, "");
-        session++;
-        button_show(session, 1);
-        return;
-    }
     //console.log('点击');
-
-    console.log(clickNode);
-    show(clickNode);
-    clickNode++;
     if (clickNode >= Story.length) {
-        alert("本章结束");
-        let a = clickNode - 1;
+        StoryEnd = true;
+        console.log(clickNode);
+        //confirm("本章结束,请选择你的决定：");
+        clickNode = Story.length - 1;
+        let a = clickNode;
         clickNow = Story[a].id.replace(/[^0-9]/ig, "");
         var session = NodeName.split("N")[1].replace(/[^0-9]/ig, "");
         session++;
-        if(isEnd == true){
-            return;
+        SwitchEnd();
+        console.log(hasBt);
+        if (hasBt == 0&&!isEnd) {
+            scrollToEnd();
+            alert("进入下一章");
+            button_show(session, 1);
+        } //注意  不是每一章都有按钮
+        if(isEnd&&StoryEnd){
+            alert(Story[clickNode].text);
         }
-        button_show(session, 1);
-        return;
-    }
-    if (clickNode< Story.length){
-        while (Story[clickNode].type == "B") {
-            clickNode++;
+        return 0;
+    } else if ((clickNode <= Story.length - 1) && !StoryEnd) { //还在故事里
+        //console.log(clickNode);
+        if (Story[clickNode].type == "B") {
+            hasBt = 1;
             show(clickNode);
-            if (clickNode == Story.length) {
-                //alert("没了！");
-                return;
+            while ((clickNode + 1 <= Story.length) && (Story[clickNode].type == "B")) {
+                console.log(clickNode);
+                showBt = 1;
+                clickBt = 0;
+                clickNode++;
+                show(clickNode);
             }
+            return;
+        } else {
+            show(clickNode);
         }
+        clickNode++;
     }
 })
 
 
-
+SwitchEnd();
+console.log(isEnd);
 
 
 
