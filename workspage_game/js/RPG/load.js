@@ -1,7 +1,7 @@
 Story = [];
 var NodeName = sessionStorage.getItem("playnode");
 var isEnd = sessionStorage.getItem("isEnd");
-if (isEnd == "undefined" || isEnd == "null") { //故事结束了没
+if (isEnd == "undefined" || isEnd == null) { //故事结束了没
     sessionStorage.setItem("isEnd", "false");
 }
 if (isEnd == "false") { //将session里的字符转换为boolean
@@ -90,6 +90,9 @@ var addButton = function (id, text, num) { //添加按钮  id是按钮id text是
         setTimeout(() => {
             switch (jumpType) {
                 case 1:
+                    if(isEnd == true){
+                        break;
+                    }
                     button_show(num, 1);
                     break;
                 default:
@@ -282,6 +285,9 @@ $(".Phone").on('click', function () {
         clickNow = Story[a].id.replace(/[^0-9]/ig, "");
         var session = NodeName.split("N")[1].replace(/[^0-9]/ig, "");
         session++;
+        if(isEnd == true){
+            return;
+        }
         button_show(session, 1);
         return;
     }
