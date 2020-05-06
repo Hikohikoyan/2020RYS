@@ -1,0 +1,127 @@
+body,
+div,
+h2,
+p,
+ul,
+li,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+    overflow-y: hidden;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 25px;
+    color: #3a3a3a;
+}
+
+.title {
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    width: 60%;
+    margin: 0 20%;
+    text-align: center;
+    z-index: 1;
+    font-size: 30px;
+}
+
+.backcolor {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    background-color: rgba(105, 105, 105, 0.534);
+}
+
+.main {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    top: 15%;
+    text-align: center;
+    margin: 80px 2px 0px 2px;
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: 1;
+}
+
+.rule {
+    margin-left: 15%;
+    margin-top: 5%;
+    padding: 5px;
+    left: 15%;
+    width: 70%;
+    height: 90%;
+    border: 1px solid #000;
+    border-radius: 5%;
+}
+
+p {
+    width: 100%;
+    height: 100%;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.buttoncontainer {
+    position: absolute;
+    width: 100%;
+    left: 30%;
+    top: 95%;
+}
+
+.button {
+    width: 40%;
+    height: 50%;
+    margin: 5px 0 0 0;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 30px;
+    font-family: Adobe 黑体 Std;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    position: relative;
+    /* BACKGROUND GRADIENTS */
+    background: #ffffff;
+    /* BORDER RADIUS */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    /* TEXT SHADOW */
+    text-shadow: 1px 1px 1px black;
+    /* BOX SHADOW */
+    -moz-box-shadow: 0 1px 3px black;
+    -webkit-box-shadow: 0 1px 3px black;
+    box-shadow: 0 1px 3px black;
+}
+
+.button:hover {
+    background: #d8d8d8;
+    /* background: -moz-linear-gradient(top, #7aa473, #5b9151 50%, #347229 51%, #1b4e11);
+        background: -webkit-gradient(linear, top, bottom, color-stop(0, #5b9151), color-stop(.5, #347229), color-stop(.51, #1b4e11), to(#144e08)); */
+}
+
+.button:active {
+    -moz-box-shadow: 0 2px 6px black;
+    -webkit-box-shadow: 0 2px 6px black;
+}
